@@ -1,0 +1,8 @@
+{
+    "IMGBB_KEY": "",
+    "SECRET_KEY": "",
+    "UPLOAD_FOLDER": "uploads/",
+    "SQLALCHEMY_DATABASE_URI": "mysql+pymysql://name:password@localhost/pythonchat",
+    "GIPHY_API_KEY": ""
+  }
+  

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}ToToGram | Account Settings{% endblock %}
+
+{% block content %}
+
+<div class="account-container">
+    <div class="details-section">
+        <h2>Профиль</h2>
+
+        <div class="profile-picture-container">
+            <img class="profile-picture" src="{% if user.img %}{{ user.img }}{% else %}{{ "https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png" | string }}{% endif %}" alt="Profile Image">
+        </div>
+
+        <div class="details-card">
+            <div id="details-list" style="width:100%; height:150px; background-color:#2e3240; border-radius:10px; text-align:center;">
+                <label style="margin:5px;">Описание</label>
+            </div>
+            <ul id="details-list">
+                <li><strong class="settings-labels">Имя</strong> {{ user.username }}</li>
+                <li><strong class="settings-labels">Ник</strong> {{ user.nickname }}</li>
+                <li><strong class="settings-labels">Почта</strong> {{ user.email }}</li>
+                <li><strong class="settings-labels">Дата рождения</strong> {{ user.dob }}</li>
+                <li><strong class="settings-labels">Пол</strong> {{ user.gender.title() }}</li>
+                <li><strong class="settings-labels">Страна</strong> {{ user.country.title() }}</li>
+            </ul>
+            <p id="details-list" class="aboutMe"><strong>О себе</strong> {{ user.aboutme }}</p>
+        </div>
+    </div>
+
+    <div class="edit-section">
+        <h2>Редактировать:</h2>
+
+        <form class="accountform" method="post" enctype="multipart/form-data">
+            <label for="image">Аватарка:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+            <button class="btn-primary" id="btn-settings" type="submit">Загрузить</button>
+        </form>
+
+        <form class="accountform" method="post">
+            <label for="username">Новое имя:</label>
+            <input type="username" id="username" name="username" placeholder="Введите новое имя">
+            <input type="username" id="username2" name="username2" placeholder="Повторите ввод нового имени">
+            <button class="btn-primary" id="btn-settings" type="submit">Сохранить</button>
+        </form>
+
+        <form class="accountform" method="post">
+            <label for="nickname">Новый ник:</label>
+            <input type="text" id="nickname" name="nickname" placeholder="Введите новый ник">
+            <button class="btn-primary" id="btn-settings" type="submit">Сохранить</button>
+        </form>
+
+        <form class="accountform" method="post">
+            <label for="password">Новый пароль:</label>
+            <input type="password" id="oldpassword" name="oldpassword" placeholder="Введите старый пароль">
+            <input type="password" id="password1" name="password1" placeholder="Введите новый пароль">
+            <input type="password" id="password2" name="password2" placeholder="Повторите ввод нового пароля">
+            <button class="btn-primary" id="btn-settings" type="submit">Сохранить</button>
+        </form>
+
+        <form class="accountform" method="post">
+            <label for="email">Новая почта:</label>
+            <input type="email" id="email" name="email" placeholder="Введите почту">
+            <button class="btn-primary" id="btn-settings" type="submit">Сохранить</button>
+        </form>
+        
+        <form class="accountform" method="post">
+            <label for="dob">Новая дата рождения:</label>
+            <input type="date" id="dob" name="dob">
+            <button class="btn-primary" id="btn-settings" type="submit">Сохранить</button>
+        </form>
+        
+        <form class="accountform" method="post">
+            <label for="country">Новая страна:</label>
+            <select id="country" name="country">
+            </select>
+            <button class="btn-primary" id="btn-settings" type="submit">Сохранить</button>
+        </form>
+        
+        <form class="accountform" method="post">
+            <label for="aboutMe">О себе:</label>
+            <textarea id="aboutme" name="aboutme" maxlength="500" oninput="updateCharacterCount(this)" placeholder="Расскажите о себе" rows="8"></textarea>
+            <div id="counter">Всего символов: <span id="charCount">500</span></div>
+
+            <button class="btn-primary" id="btn-settings" type="submit">Сохранить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
